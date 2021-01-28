@@ -80,59 +80,46 @@
    <script>
       const phone1 = 500, phone2 = 400;
       document.getElementById('phone1plus').addEventListener('click', function () {
-         const price = priceupdate('phone1price', phone1);
-         document.getElementById('phone1price').innerText = price;
-         quantitydetails('sil1',1);
-         const total=subtotal('subtotal',phone1)
-         const tax=taxDetails('taxbd',total);
-         subtotalsDetails('subtotals',total,tax)
-      })
+         var quantitysize=1;
+         getDetails('phone1price',phone1,'sil1',quantitysize,'subtotal','taxbd','subtotals')
+      }) 
       document.getElementById('phone1minus').addEventListener('click', function () {
-         const price = priceupdate('phone1price',-1*phone1);
-         document.getElementById('phone1price').innerText = price;
-         quantitydetails('sil1',-1);
-         const total=subtotal('subtotal',-1*phone1)
-         const tax=taxDetails('taxbd',total)
-         subtotalsDetails('subtotals',total,tax)
-      })
-     
+         var quantitysize=-1;
+         const answer=getDetails('phone1price',phone1,'sil1',quantitysize,'subtotal','taxbd','subtotals')
+      })  
       document.getElementById('phone2plus').addEventListener('click', function () {
-         const price = priceupdate('phone2price', phone2);
-         document.getElementById('phone2price').innerText = price;
-         quantitydetails('sil2',1);
-         const total=subtotal('subtotal',phone2)
-         const tax=taxDetails('taxbd',total)
-         subtotalsDetails('subtotals',total,tax)
-
+         var quantitysize=1;
+         getDetails('phone2price',phone2,'sil2',quantitysize,'subtotal','taxbd','subtotals')
       })
       document.getElementById('phone2minus').addEventListener('click', function () {
-         const price = priceupdate('phone2price',-1*phone2);
-         document.getElementById('phone2price').innerText = price;
-         quantitydetails('sil2',-1);
-         const total=subtotal('subtotal',-1*phone2)
-         const tax=taxDetails('taxbd',total)
-         subtotalsDetails('subtotals',total,tax)
+         var quantitysize=-1;
+         getDetails('phone2price',phone2,'sil2',quantitysize,'subtotal','taxbd','subtotals')
       }) 
       document.getElementById('sil1').addEventListener('click',function(){
-         const quantity=document.getElementById('sil1').value;
-         const price=quantity*phone1;
-         document.getElementById('phone1price').innerText=price; 
-         const secondphoneprice=document.getElementById('phone2price').innerText;
-         const total=parseFloat(price)+parseFloat(secondphoneprice);
-         document.getElementById('subtotal').innerText=total;
-         const tax=taxDetails('taxbd',total)
-         subtotalsDetails('subtotals',total,tax)
+         middleinput('sil1',phone1,'phone1price','phone2price','subtotal','taxbd','subtotals')
       })
       document.getElementById('sil2').addEventListener('click',function(){
-         const quantity=document.getElementById('sil2').value;
-         const price=quantity*phone2;
-         document.getElementById('phone2price').innerText=price; 
-         const firstphoneprice=document.getElementById('phone1price').innerText;
-         const total=parseFloat(price)+parseFloat(firstphoneprice);
-         document.getElementById('subtotal').innerText=total;
-         const tax=taxDetails('taxbd',total)
-         subtotalsDetails('subtotals',total,tax)
+         middleinput('sil2',phone2,'phone2price','phone1price','subtotal','taxbd','subtotals')
       })
+      function getDetails(phoneid,phoneidprice,quantityid,quantitysize,subtotalid,taxid,subtotalsid){
+         const price = priceupdate(phoneid, phoneidprice);
+         document.getElementById(phoneid).innerText = price;
+         quantitydetails(quantityid,quantitysize);
+         const ph=quantitysize*phoneidprice;
+         const total=subtotal(subtotalid,ph);
+         const tax=taxDetails(taxid,total);
+         subtotalsDetails(subtotalsid,total,tax)
+      }
+      function middleinput(phoneid,phoneidprice,phonepriceid1,phonepriceid2,subtotalid,taxid,subtotalsid){
+         const quantity=document.getElementById(phoneid).value;
+         const price=quantity*phoneidprice;
+         document.getElementById(phonepriceid1).innerText=price; 
+         const phoneprice=document.getElementById(phonepriceid2).innerText;
+         const total=parseFloat(price)+parseFloat(phoneprice);
+         document.getElementById(subtotalid).innerText=total;
+         const tax=taxDetails(taxid,total)
+         subtotalsDetails(subtotalsid,total,tax)
+      }
       function quantitydetails(id,iteration){
          const quantity=document.getElementById(id).value;
          const quantitytotal=parseInt(quantity)+iteration;
