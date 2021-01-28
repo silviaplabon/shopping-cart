@@ -83,14 +83,13 @@
          getDetails('phone1price',phone1,'sil1',1,'subtotal','taxbd','subtotals')
       }) 
       document.getElementById('phone1minus').addEventListener('click', function () {
-         var quantitysize=-1;
-         getDetails('phone1price',phone1,'sil1',-1,'subtotal','taxbd','subtotals')
+         getDetails('phone1price',-1*phone1,'sil1',-1,'subtotal','taxbd','subtotals')
       })  
       document.getElementById('phone2plus').addEventListener('click', function () {
          getDetails('phone2price',phone2,'sil2',1,'subtotal','taxbd','subtotals')
       })
       document.getElementById('phone2minus').addEventListener('click', function () {
-         getDetails('phone2price',phone2,'sil2',-1,'subtotal','taxbd','subtotals')
+         getDetails('phone2price',-1*phone2,'sil2',-1,'subtotal','taxbd','subtotals')
       }) 
       document.getElementById('sil1').addEventListener('click',function(){
          middleinput('sil1',phone1,'phone1price','phone2price','subtotal','taxbd','subtotals')
@@ -102,8 +101,7 @@
          const price = priceupdate(phoneid, phoneidprice);
          document.getElementById(phoneid).innerText = price;
          quantitydetails(quantityid,quantitysize);
-         const ph=quantitysize*phoneidprice;
-         const total=subtotal(subtotalid,ph);
+         const total=subtotal(subtotalid,phoneidprice);
          const tax=taxDetails(taxid,total);
          subtotalsDetails(subtotalsid,total,tax)
       }
