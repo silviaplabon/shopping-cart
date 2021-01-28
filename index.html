@@ -80,20 +80,17 @@
    <script>
       const phone1 = 500, phone2 = 400;
       document.getElementById('phone1plus').addEventListener('click', function () {
-         var quantitysize=1;
-         getDetails('phone1price',phone1,'sil1',quantitysize,'subtotal','taxbd','subtotals')
+         getDetails('phone1price',phone1,'sil1',1,'subtotal','taxbd','subtotals')
       }) 
       document.getElementById('phone1minus').addEventListener('click', function () {
          var quantitysize=-1;
-         const answer=getDetails('phone1price',phone1,'sil1',quantitysize,'subtotal','taxbd','subtotals')
+         getDetails('phone1price',phone1,'sil1',-1,'subtotal','taxbd','subtotals')
       })  
       document.getElementById('phone2plus').addEventListener('click', function () {
-         var quantitysize=1;
-         getDetails('phone2price',phone2,'sil2',quantitysize,'subtotal','taxbd','subtotals')
+         getDetails('phone2price',phone2,'sil2',1,'subtotal','taxbd','subtotals')
       })
       document.getElementById('phone2minus').addEventListener('click', function () {
-         var quantitysize=-1;
-         getDetails('phone2price',phone2,'sil2',quantitysize,'subtotal','taxbd','subtotals')
+         getDetails('phone2price',phone2,'sil2',-1,'subtotal','taxbd','subtotals')
       }) 
       document.getElementById('sil1').addEventListener('click',function(){
          middleinput('sil1',phone1,'phone1price','phone2price','subtotal','taxbd','subtotals')
